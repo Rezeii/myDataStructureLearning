@@ -1,3 +1,3 @@
 # myDataStructureLearning
 
-Welcome！This is a record of my own data strcuture learnig.
+Welcome！This is a record of my own data strcuture learning.
