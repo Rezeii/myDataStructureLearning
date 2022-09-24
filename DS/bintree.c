@@ -3,7 +3,7 @@
 
 //二叉树的分类：斜二叉树、完美二叉树、完全二叉树
 #define ElementType int
-typedef TreeNode *bintree;
+
 typedef bintree Position;
 struct TreeNode
 {
@@ -11,6 +11,8 @@ struct TreeNode
     bintree left;
     bintree right;
 };
+
+typedef TreeNode *bintree;
 
 void PreOrderTraversal(bintree BT) //先序遍历
 {
@@ -32,17 +34,17 @@ void InOrderTraversal(bintree BT) //钟序遍历
     }
 }
 
-void PostOrderTraversal(bintree BT) //钟序遍历
+void PostOrderTraversal(bintree BT) //中序遍历
 {
     if (BT)
     {
         PreOrderTraversal(BT->left);
-        printf("%d", BT->data);
         PreOrderTraversal(BT->right);
+        printf("%d", BT->data);
     }
 }
 
-void Traversal(bintree BT) //非递归实现二叉树的中序遍历
+void Traversal(bintree BT) //非递归实现二叉树的前/中序遍历,本质是使用栈
 {
     bintree T = BT;
     stack S = createStack(maxsize);
@@ -52,13 +54,14 @@ void Traversal(bintree BT) //非递归实现二叉树的中序遍历
         while (T)
         {
             Push(S, T); //第一次碰到这个结点
+            // printf("%d ", temp->data); // 先序是第一次遇到时访问
             T = T->left
         }
         if (!IsEmpty(S))
         {
-            T = Pop(S); //第二次碰到这个结点
-            printf("%d", T->data);
-            T = T->right; //第三次碰到这个结点
+            T = Pop(S);            //第二次碰到这个结点
+            printf("%d", T->data); // 中序是第二次遇到时访问
+            T = T->right;          //转向右子树
         }
     }
 }
