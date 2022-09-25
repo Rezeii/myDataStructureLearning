@@ -57,7 +57,7 @@ BinTree Insert(ElementType X, BinTree BST) //二叉树中插入结点
     else
     {
         if (X < BST->data)
-            BST = Insert(X, BSt->data);
+            BST = Insert(X, BST->left);
         else if (X > BST->data)
             BST = Insert(X, BST->right);
     }
